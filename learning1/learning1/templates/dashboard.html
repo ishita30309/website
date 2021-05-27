@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        
+    }
+    th, td {
+        padding: 25px;
+    }
+    #t01 tr:nth-child(even) {
+        background-color: #eee;
+    }
+
+    #t01 tr:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    #t01 th {
+        background-color: steelblue;
+        color: white;
+    }
+</style>
+<h1 style="text-align:center;">DASHBOARD</h1>
+<h3 style="text-align:center;">welcome {{title}}</h3>
+
+
+<table id="t01">
+
+    <tr>
+
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>PhoneNumber</th>
+        <th>EmailID</th>
+        <th>Username</th>
+        <th>Password</th>
+    </tr>
+
+    {% for x in item:%}
+    <tr>
+        <td>
+            {{x.FirstName}}
+
+        </td>
+        <td>
+            {{x.LastName}}
+
+        </td>
+        <td>
+            {{x.PhoneNumber}}
+
+        </td>
+        <td>
+            {{x.EmailID}}
+
+        </td>
+        <td>
+            {{x.Username}}
+
+        </td>
+        <td>
+            {{x.Password}}
+
+        </td>
+    </tr>
+
+    {% endfor %}
+</table>
+
+{% endblock %}

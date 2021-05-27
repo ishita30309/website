@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        fieldset {
+            background-color: #52a4c7;
+        }
+        legend {
+            background-color: gray;
+            color: white;
+            padding: 5px 10px;
+        }
+
+        input {
+            margin: 25px;
+        }
+        form {
+            color: white;
+            width: 600px;
+            height: 300px;
+            margin: auto;
+            margin-top: 30px;
+        }  
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">SIGN UP</h1>
+    <h3 style="text-align:center;">welcome {{title}}</h3>
+    <style>
+        .wrapper {
+            text-align: center;
+        }
+
+        .button {
+            position: absolute;
+            background-color: yellow;
+            top: 118%;
+        }
+    </style>
+    
+    Select Country:
+    <select name="state" id="countySel" size="1">
+        {% for x in country:%}
+        <option value="" selected="selected">{{x}}</option>
+        {% endfor %}
+    </select>
+    
+    Select state:
+    <select name="city" id="state" size="1">
+        {% for x in state:%}
+        <option value="" selected="selected">{{x}}</option>
+        {% endfor %}
+    </select>
+    <form action="{{url_for('signup')}}" method="post">
+        <fieldset class="wd">
+            <legend>Credentials:</legend>
+            <label for="fname"><br>First Name :</label>
+            <input type="text" id="fname" name="fname" placeholder="Enter your First name"><br>
+            <label for="lname">Last Name :</label>
+            <input type="text" id="lname" name="lname" placeholder="Enter your Last name"><br>
+            <label for="phone">Phone Number :</label>
+            <input type="tel" id="phone" name="phone" placeholder="0123-456789"><br>
+            <label for="email">Email ID :</label>
+            <input type="email" id="email" name="email" placeholder="me@example.org"><br>
+            <label for="username">Username :</label>
+            <input type="text" id="username" name="username" placeholder="Enter your Username"><br>
+            <label for="password">Password :</label>
+            <input type="password" id="password" name="password" placeholder="Enter your Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"><br>
+            <label for="confirmpassword">Confirm Password :</label>
+            <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm your Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"><br>
+            <div class="wrapper">
+                <button class="button">SUBMIT</button>
+            </div>
+
+        </fieldset>
+    </form>
+</body>
+
+</html>
+
+
+
+
+
+{% endblock %}
