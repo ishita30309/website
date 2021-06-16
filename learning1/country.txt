@@ -1,4 +1,2 @@
-india
-srilanka
-pakistan
-usa
+India
+Australia

@@ -6,7 +6,7 @@
 <head>
     <style>
         fieldset {
-            background-color: #52a4c7;
+            background-color:#E8B9CA;
         }
         legend {
             background-color: gray;
@@ -40,43 +40,53 @@
             top: 118%;
         }
     </style>
-    
-    Select Country:
-    <select name="state" id="countySel" size="1">
-        {% for x in country:%}
-        <option value="" selected="selected">{{x}}</option>
-        {% endfor %}
-    </select>
-    
-    Select state:
-    <select name="city" id="state" size="1">
-        {% for x in state:%}
-        <option value="" selected="selected">{{x}}</option>
-        {% endfor %}
-    </select>
-    <form action="{{url_for('signup')}}" method="post">
-        <fieldset class="wd">
-            <legend>Credentials:</legend>
-            <label for="fname"><br>First Name :</label>
-            <input type="text" id="fname" name="fname" placeholder="Enter your First name"><br>
-            <label for="lname">Last Name :</label>
-            <input type="text" id="lname" name="lname" placeholder="Enter your Last name"><br>
-            <label for="phone">Phone Number :</label>
-            <input type="tel" id="phone" name="phone" placeholder="0123-456789"><br>
-            <label for="email">Email ID :</label>
-            <input type="email" id="email" name="email" placeholder="me@example.org"><br>
-            <label for="username">Username :</label>
-            <input type="text" id="username" name="username" placeholder="Enter your Username"><br>
-            <label for="password">Password :</label>
-            <input type="password" id="password" name="password" placeholder="Enter your Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"><br>
-            <label for="confirmpassword">Confirm Password :</label>
-            <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm your Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"><br>
-            <div class="wrapper">
-                <button class="button">SUBMIT</button>
-            </div>
 
-        </fieldset>
-    </form>
+    
+       
+        <form action="{{url_for('signup')}}" method="post">
+            <fieldset class="wd">
+                <legend>Credentials:</legend>
+                <input type="submit" value="submit" id="abc" style="display:none" /><br><br>
+                Select country:
+                <select name="country" id="country" size="1" onchange="document.getElementById('abc').click()">
+                    {% for x in country:%}
+                    {% if userselectedcountry==x %}
+                    <option value="{{x}}" selected="selected" >{{x}}</option>
+                    {% else %}
+                    <option value="{{x}}">{{x}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+
+                Select state:
+                <select name="state" id="state" size="1">
+                    {% for x in state:%}
+                    <option value="{{x}}" selected="selected" >{{x}}</option>
+                    {% endfor %}
+                </select>
+
+                <br><label for="fname"><br>First Name :</label>
+                <input type="text" id="fname" name="fname" placeholder="Enter your First name"><br>
+                <label for="lname">Last Name :</label>
+                <input type="text" id="lname" name="lname" placeholder="Enter your Last name"><br>
+                <label for="phone">Phone Number :</label>
+                <input type="tel" id="phone" name="phone" placeholder="0123-456789"><br>
+                <label for="email">Email ID :</label>
+                <input type="email" id="email" name="email" placeholder="me@example.org"><br>
+                <label for="username">Username :</label>
+                <input type="text" id="username" name="username" placeholder="Enter your Username"><br>
+                <label for="password">Password :</label>
+                <input type="password" id="password" name="password" placeholder="Enter your Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"><br>
+                <label for="confirmpassword">Confirm Password :</label>
+                <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm your Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"><br>
+                <br><input type="submit" value="submit" /><br>
+                <hr>
+                <p><a style="font-weight:bold" href="{{url_for('home')}}">SignIn </a>.</p>
+                <hr>
+
+
+            </fieldset>
+        </form>
 </body>
 
 </html>

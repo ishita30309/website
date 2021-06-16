@@ -37,6 +37,8 @@
         <th>EmailID</th>
         <th>Username</th>
         <th>Password</th>
+        <th>Country</th>
+        <th>State</th>
     </tr>
 
     {% for x in item:%}
@@ -63,6 +65,14 @@
         </td>
         <td>
             {{x.Password}}
+
+        </td>
+        <td>
+            {{x.Country}}
+
+        </td>
+        <td>
+            {{x.State}}
 
         </td>
     </tr>

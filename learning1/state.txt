@@ -1,4 +1,4 @@
-india-punjab
-india-haryana
-india-kerala
-usa-california
+India-punjab
+India-haryana
+India-kerala
+Australia-melbourne

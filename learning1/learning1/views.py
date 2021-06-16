@@ -3,7 +3,7 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template,request
+from flask import render_template,request,session
 from learning1 import app
 import json
 import ast
@@ -40,13 +40,13 @@ def home():
     if not texts:
         texts=[{'EmailID':'ishita30309@gmail.com','Username':'ishita','Password':'Ishita@2002','ConfirmPassword':'Ishita@2002'}]
     if request.method=="POST":
-        
+        session['username'] =request.form["username"]
         user=request.form["username"]
         pwd=request.form["pwd"]
         for item in items:
             if item["Username"]==user:
                 return render_template('dashboard.html',title=user,year=datetime.now().year,item=items)
-        return render_template('index.html',title='Ishita',year=datetime.now().year)
+        return render_template('dashboard.html',title='Ishita',year=datetime.now().year)
     else:
         return render_template('index.html',title='Ishita',year=datetime.now().year)
 
@@ -56,18 +56,26 @@ def signup():
     lstcountry=(lstcountry.splitlines())
     lststate=read_file("state.txt")
     lststate=(lststate.splitlines())
-  
+    lista=[]
+    country=""
     if request.method=="POST":
-        items.append({'FirstName':request.form["fname"],'LastName':request.form["lname"],'PhoneNumber':request.form["phone"],'EmailID':request.form["email"],'Username':request.form["username"],'Password':request.form["password"],'ConfirmPassword':request.form["confirmpassword"]})
+        country=request.form["country"]
+        for item in lststate:
+            x = item.startswith(country)
+            if(x==False):
+                lista.append(item)
+        for i in lista:
+           lststate.remove(i)
+        items.append({'FirstName':request.form["fname"],'LastName':request.form["lname"],'PhoneNumber':request.form["phone"],'EmailID':request.form["email"],'Username':request.form["username"],'Password':request.form["password"],'ConfirmPassword':request.form["confirmpassword"],'Country':request.form["country"],'State':request.form["state"]})
         write_file("user_details.txt",items)
-        return render_template('index.html',title='Ishita',year=datetime.now().year)
-    return render_template(
-        'signup.html',
-        title='Signup',
-        year=datetime.now().year,
-        message='Your Signup page.',item=items,country=lstcountry,state=lststate
-        
-    )
+                 
+                 
+                 #return render_template('index.html',title='Ishita',year=datetime.now().year)
+
+    return render_template('signup.html',title='Signup',year=datetime.now().year, message='Your Signup page.',item=items,country=lstcountry,state=lststate,userselectedcountry=country)
+     
+    
+
 
 @app.route('/ForgetPassword',methods=["POST","GET"])
 def ForgetPassword():
@@ -88,18 +96,27 @@ def ForgetPassword():
     )
 @app.route('/dashboard',methods=["POST","GET"])
 def dashboard():
-    
-    
-    return render_template(
+    if 'username' in session:
+      username = session['username']
+      return render_template(
         'dashboard.html',
         align="right",
         title='dashboard',
         year=datetime.now().year,
         message='Your dashboard page.',item=items
     )
+    else:
+        return render_template('index.html',title='Ishita',year=datetime.now().year)
+    
+    
+   
 @app.route('/logout',methods=["POST","GET"])
 def logout():
     """Renders the ForgetPassword page."""
+
+    if 'username' in session:
+      username = session['username']
+      session.pop('username', None)
     return render_template(
         'index.html',
         align="right",

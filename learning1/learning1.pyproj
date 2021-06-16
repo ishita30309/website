@@ -41,6 +41,9 @@
     <Folder Include="learning1\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="country.txt" />
+    <Content Include="learning1\templates\dashboard.html" />
+    <Content Include="learning1\templates\logout.html" />
     <Content Include="requirements.txt" />
     <Content Include="learning1\static\content\bootstrap.css" />
     <Content Include="learning1\static\content\bootstrap.min.css" />
