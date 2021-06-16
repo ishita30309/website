@@ -1,1 +1,4 @@
-[{"india":"punjab,haryana,kerala,assam"},{"usa":"california,florida,georgia"},{"usa":"california,florida,georgia"}kmjn
+india-punjab
+india-haryana
+india-kerala
+usa-california
